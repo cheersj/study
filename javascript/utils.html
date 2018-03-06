@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		const _ = item=>document.write(item);
+	</script>
+</head>
+<body>
+	
+
+	<h2>数组平均数</h2>
+	<p>使用reduce（）将每个值添加到累加器，初始值为0，总和除以数组长度</p>
+	<script>
+		const average = arr => arr.reduce((acc,val) => acc + val, 0)/arr.length;
+		_(average([1,2,3,4,5]));
+	</script>
+
+	<h2>数组总和</h2>
+	<p>使用reduce（）将每个值添加到累加器，初始化值为0</p>
+	<script>
+		const sum = arr => arr.reduce((acc,val)=>acc+val,0);
+		_(sum([1,2,3,4]));
+	</script>
+
+	<h2>大写每个单词的首字母</h2>
+	<p>使用replace（）匹配每个单词的第一个字符，并使用toUpperCase（）来将其大写</p>
+	<script>
+		const capitalizeEveryWord = str => str.replace(/\b[a-z]/g,char=>char.toUpperCase());
+		_(capitalizeEveryWord('hello world!'));
+	</script>
+
+	<h2>计数数组中值的出现次数</h2>
+	<p>每次遇到数组中的特定值时，使用reduce（）来递增计数器</p>
+	<script>
+		const countOccurrences = (arr,value) => arr.reduce((a,v)=>v===value?a+1:a+0,0);
+		_(countOccurrences([1,1,2,1,2,3], 1));
+	</script>
+
+	<h2>当前URL</h2>
+	<p>使用window.location.href来获取当前URL</p>
+	<script>
+		const currentUrl = _=>window.location.href;
+		_(currentUrl()); 
+	</script>
+
+	<h2>从数组中获取最大值</h2>
+	<p>使用Math.max（）与spread运算符（...）结合得到数组中的最大值</p>
+	<script>
+		const arrmax = arr => Math.max(...arr);	// 最小 min
+		_(arrmax([10,2,5]));
+	</script>
+
+	<h2>获取滚动位置</h2>
+	<p>如果已定义，请使用pageXOffset和pageYOffset，否则使用scrollLeft和scrollTop，可以省略el来使用window的默认值</p>
+	<script>
+		const getScrollPos = (el=window) => 
+		({x:(el.pageXOffset !== undefined)?el.pageXOffset:el.scrollLeft,
+		  y:(el.pageYOffset !== undefined) ? el.pageYOffset : el.scrollTop	
+		});
+		console.log(getScrollPos());
+	</script>
+
+	<h2>范围内的随机整数</h2>
+	<p>使用Math.random（）生成一个随机数并将其映射到所需的范围，使用Math.floor（）使其成为一个整数</p>
+	<script>
+		const randomIntegerInRange = (min,max) => Math.floor(Math.random()*(max-min+1))+min;
+		_(randomIntegerInRange(0,5));
+	</script>
+
+	<h2>范围内的随机数</h2>
+	<p>使用Math.random（）生成一个随机值，使用乘法将其映射到所需的范围</p>
+	<script>
+		const randomInRange = (min,max) => Math.random() * (max-min) + min;
+		_(randomInRange(2,10)); 
+	</script>
+
+	<h2>随机化数组的顺序</h2>
+	<p>使用sort（）重新排序元素，利用Math.random（）来随机排序</p>
+	<script>
+		const shuffle = arr => arr.sort(()=>Math.random()-0.5);
+		_(shuffle([1,2,3]));
+	</script>
+	
+	<h2>重定向到URL</h2>
+	<p>使用window.location.href或window.location.replace（）重定向到url。 传递第二个参数来模拟链接点击（true - default）或HTTP重定向（false）</p>
+	<script>
+		const redirect = (url,asLink = true) => asLink ? window.location.href = url : window.location.replace(url);
+
+	</script>
+
+	<h2>滚动到顶部</h2>
+	<p>使用document.documentElement.scrollTop或document.body.scrollTop获取到顶部的距离</p>
+	<script>
+		const scrollToTop = _ => {
+			const c = document.documentElement.scrollTop||document.body.scrollTop;
+			if(c>0){
+				window.requestAnimationFrame(scrollToTop);
+				window.scrollTo(0,c-c/8);
+			}
+		};
+		scrollToTop()
+	</script>
+
+
+</body>
+</html>

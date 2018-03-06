@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>单例模式</title>
+</head>
+<body>
+	<pre>
+		定义：
+		单例就是保证一个类只有一个实例，实现的方法一般是先判断实例存在与否，如果存在直接返回，如果不存在就创建了再返回，这就确保了一个类只有一个实例对象。在JavaScript里，单例作为一个命名空间提供者，从全局命名空间里提供一个唯一的访问点来访问该对象。
+		举例：
+		模态框、
+		登录控件、
+		注销控件
+		下面均以登录模态框做说明
+	</pre>
+	<script>
+		// 引入代理实现单例模式
+		var CreateDiv = function(html){
+			this.html = html;
+			this.init();
+		};
+
+		CreateDiv.prototype.init = function() {
+			var div = document.createElement('div');
+			div.innerHTML = this.html;
+			document.body.appendChild(div); 
+		};	
+
+		var ProxySingletonCreateDiv = (function(){
+			var instance;
+			return function(html){
+				if(!instance){
+					instance = new CreateDiv(html);
+				}
+				return instance;
+			}
+		})();
+
+		var a = new ProxySingletonCreateDiv('seven1');
+		var b = new ProxySingletonCreateDiv('seven2');
+
+		console.log(a)
+		console.log(b)
+
+		console.log(a===b)
+	</script>
+</body>
+</html>

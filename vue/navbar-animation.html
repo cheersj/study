@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		li {
+			list-style: none;
+		}
+		.clear::after {
+			display: block;
+			content: '';
+			clear:both;		
+		}
+		.nav {
+			margin: 40px;
+			position: relative;
+		}	 
+		.nav li {
+			float: left;
+			width: 100px;
+			height: 40px;
+			line-height: 40px;
+			color: #fff;
+			text-align: center;
+			background: #09f;
+			cursor: pointer;
+		}	
+		.nav li span {
+			position: relative;
+			z-index: 2;
+		}
+		.nav .slider {	
+			width: 100px;
+			height: 40px;
+			background: #f90;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			transition: all .5s cubic-bezier(0.4, -0.3, 0.57, 1.38);
+		}
+	</style>
+</head>
+<body>
+	<!-- <div class="nav clear" id="nav" @mouseleave="nowIndex=0">
+		<ul>
+			<li @mouseenter.stop="nowIndex=0"><span>Tab One</span></li>
+			<li @mouseenter.stop="nowIndex=1"><span>Tab Two</span></li>
+			<li @mouseenter.stop="nowIndex=2"><span>Tab Three</span></li>
+			<li @mouseenter.stop="nowIndex=3"><span>Tab Four</span></li>
+			<li @mouseenter.stop="nowIndex=4"><span>Tab Fie</span></li>
+			<li @mouseenter.stop="nowIndex=5"><span>Tab Six</span></li>
+		</ul>
+		<div class="slider" :style="{'transform':'translate3d('+nowIndex*100+'px,0,0)'}"></div>					
+	</div>
+	<script src="vue.min.js"></script>		
+	<script>
+		var app = new Vue({
+			el:'#nav',
+			data:{
+				nowIndex:0	
+			}
+		});	
+	</script> -->
+	
+	<div class="nav clear" id="nav">
+		<ul>
+			<li><span>Tab One</span></li>
+			<li><span>Tab Two</span></li>
+			<li><span>Tab Three</span></li>
+			<li><span>Tab Four</span></li>
+			<li><span>Tab Fie</span></li>
+			<li><span>Tab Six</span></li>
+		</ul>
+		<div class="slider"></div>					
+	</div>
+	<script>
+		var oNav = document.querySelector("#nav"), 
+			oLi = oNav.querySelectorAll("li"),
+			oSlider = document.querySelector(".slider");
+		oNav.addEventListener("mouseleave",function(){
+			oSlider.style.transform = 'translate3d(0,0,0)';	
+		});
+		for(var i = 0; i < oLi.length; i++){
+			oLi[i].index = i;
+			oLi[i].addEventListener("mouseenter",function(e){
+				oSlider.style.transform = 'translate3d('+this.index*this.offsetWidth+'px,0,0)';	
+			})
+		}
+	</script>
+</body> 
+</html>

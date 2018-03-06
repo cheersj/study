@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+	<title>CSS滚动布局的两种方法</title>
+	<style>
+		* {margin: 0; padding: 0}
+		/* 
+			根据页面滚动的位置分为两种布局，
+			一种是滚动 body，
+			另一种是固定 body 的高度为100%，在 main 中滚动。
+		 */
+
+		 /* 
+			第一种布局有个优点，就是页面的地址栏会随着 body 的滚动隐藏起来，
+			并且 Android 设备中，滚动 body 会更加的流畅，如果项目中有类似需求可以考虑
+		  */
+		 /* body {
+		 			overflow: auto;
+		 		}
+		 		.header,
+		 		.footer {
+		 			position: fixed;
+		 			left: 0;
+		 			right: 0;
+		 			height: 44px;
+		 			background-color: #666;
+		 		}
+		 		.header {
+		 			top: 0;
+		 		}
+		 		.footer {
+		 			bottom: 0;
+		 		}
+		 		
+		 		.main {
+		 			height: 100%;
+		 			padding: 44px 0;
+		 		}
+		 		
+		 		p {
+		 			height: 1000px;
+		 			background-color: #0f0;
+		 		}  */
+
+
+
+		/* 
+			第一种情况比较适合长列表页面，整个页面除了 header 和 footer 之外都需要滚动，但很多时候，我们只希望页面的某个元素滚动，这个时候，就采取第二种布局方式
+		 */
+
+		 /* 
+			这种页面布局有三种相对简单的实现方式：
+				fixed 定位
+				absolute 定位
+				flex 定位
+		  */
+		  /* 
+			最容易想到的实现方式是 fixed 定位，实现方式如下
+		   */
+			 html,body {
+				height: 100%;
+				overflow: hidden;
+			}
+			.header,
+			.footer {
+				position: fixed;
+				left: 0;
+				right: 0;
+				height: 44px;
+				background-color: #666;
+			}
+			.header {
+				top: 0;
+			}
+			.footer {
+				bottom: 0;
+			}
+			.main {
+				height: 100%;
+				padding: 44px 0;
+				box-sizing: border-box;
+				overflow: auto;
+			} 
+			p {
+	 			height: 1000px;
+	 			background-color: #0f0;
+	 		} 
+
+
+	</style>
+</head>
+<body>
+	<div class="header"></div>
+	<div class="main">
+		<p>aaa</p>
+		<p>aaa</p>
+		<p>aaa</p>
+	</div>
+	<div class="footer"></div>
+</body>
+</html>

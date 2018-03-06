@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>水平垂直居中的方法</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.box {
+			width: 300px;
+			height: 300px;
+			border: 3px solid #f00;
+			background: #e9dfc7;
+			/*text-align: center;*/
+			 
+			/*position: relative;*/
+			
+			/* display: table-cell;
+			vertical-align: middle;
+			text-align: center; */
+
+			/*flexBox居中*/
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		img {
+			/*display: block;*/
+			width: 100px;
+			height: 100px;
+			/*margin: 0 auto;*/
+			
+			/*定位和需要定位的元素的margin减去宽高的一半*/
+			/* position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-top: -50px;
+			margin-left: -50px; */
+			
+			/*定位和margin:auto;*/
+			/* position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto; */
+
+			/*绝对定位和transfrom*/
+			/* position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%); */
+
+			/*diplay：table-cell*/
+
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<img src="./images/img1.jpg" alt="">
+	</div>	
+</body>
+</html>

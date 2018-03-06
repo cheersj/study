@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas背景连线</title>
+	<style>
+		* {margin: 0; padding: 0;}
+		#canvas {
+			display: block;
+			background-color: #000;
+		}
+	</style>
+</head>
+<body>	
+	<canvas id="canvas"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas'); 
+		var cxt = canvas.getContext('2d');
+
+		var w = canvas.width = window.innerWidth;
+		var h = canvas.height = window.innerHeight;
+
+		var num = 200;	// 生成点的个数
+		var data = []; 	// 每次重绘不能够再随机生成，要用数组存起来他们的坐标,让他们动起来
+
+		var move = {};	// 存储鼠标的位置点
+		document.onmousemove = function(e){
+			move.x = e.clientX;
+			move.y = e.clientY;
+		};
+
+		// 生成num个点，并且存储初始坐标
+		for (var i = 0; i < num; i++) {
+			data[i] = {
+				x : Math.random()*w,	
+				y : Math.random()*h,
+				cX: Math.random()*1-.5,
+				cY: Math.random()*1-.5
+			}
+			Circle(data[i].x,data[i].y);				
+		};	
+
+		// 动
+		!function draw(){
+			cxt.clearRect(0,0,w,h);
+
+			for (var i = 0; i < num; i++) {
+				data[i].x += data[i].cX;
+				data[i].y += data[i].cY;
+				if(data[i].x > w || data[i].x < 0){
+					data[i].cX = -data[i].cX;	
+				}	
+				if(data[i].y > h || data[i].y < 0){
+					data[i].cY = -data[i].cY;	
+				}	
+				Circle(data[i].x,data[i].y);	
+
+				for (var j = 0; j < num; j++) {
+					if(	
+						Math.pow((data[i].x - data[j].x),2) + 
+						Math.pow((data[i].y - data[j].y),2) <= 
+						Math.pow(50,2) 
+					){
+						Line(data[i].x, data[i].y, data[j].x, data[j].y, false);
+					}		
+				};
+
+				if(move.x){
+					if(	
+						Math.pow((data[i].x - move.x),2) + 
+						Math.pow((data[i].y - move.y),2) <= 
+						Math.pow(100,2) 
+					){
+						Line(data[i].x, data[i].y, move.x, move.y, true);
+					}	
+				}
+
+			};
+
+			window.requestAnimationFrame(draw);
+		}();
+		
+		// 画线
+		function Line(x1,y1,x2,y2,isMove){
+			cxt.save();	
+
+			var lineColor = cxt.createLinearGradient(x1,y1,x2,y2);
+			if(!isMove){
+				lineColor.addColorStop(0,'#66ffff');
+				lineColor.addColorStop(1,'#990099');	
+			} else {
+				lineColor.addColorStop(0,'#00ff00');
+				lineColor.addColorStop(1,'#ff0000');
+			}
+			
+
+			cxt.strokeStyle = lineColor;
+			cxt.beginPath();
+			cxt.moveTo(x1,y1);
+			cxt.lineTo(x2,y2);
+			cxt.stroke();
+
+			cxt.restore();
+		}
+
+		// 画点
+		function Circle(x,y) {
+			cxt.save();
+
+			cxt.fillStyle = 'pink';
+			cxt.beginPath();
+			cxt.arc(x,y,.5,0,2*Math.PI,true);
+			cxt.closePath();
+			cxt.fill();
+
+			cxt.restore();	
+		}
+
+
+
+	</script>
+</body>
+</html>

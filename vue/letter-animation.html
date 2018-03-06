@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+	<title>Document</title>
+	<style>
+		body {
+			background: #ccc;
+		}
+		h1 {
+			display: block;
+			color: #fff;
+			font-size: 60px;
+			line-height: 1;
+			letter-spacing: .5rem;
+			text-align: center;
+			text-transform: uppercase;
+			margin-top: 100px;
+			animation: letterspacing 1s 7 alternate ease-in-out;
+		}
+		@keyframes letterspacing {
+			 0% {
+				letter-spacing: -72px;
+				filter: blur(20px); 
+			}
+			40% {
+				filter: blur(6px);
+			}
+			80% {
+				letter-spacing: 8px;
+				filter: blur(0);
+			} 
+		}
+	</style>
+</head>
+<body>
+	<div id="test">
+		<h1>{{testText}}</h1>
+		<!-- <h1>欢迎浏览</h1> -->
+	</div>
+	<script src="vue.min.js"></script>		
+	<script>
+		var app = new Vue({
+			el:'#test',
+			data:{
+				nowIndex:0,
+				testText:'欢迎浏览'
+			},
+			mounted(){
+				let _this = this;
+				let timer = setInterval(function(){
+					_this.nowIndex++;
+					switch(_this.nowIndex){
+						case 1:
+							_this.testText = '守候的文章';
+							break;
+						case 2:
+							_this.testText = '愿您浏览愉快';
+							break;
+						case 3:
+							_this.testText = '学到知识';
+							break;		
+					}	
+					if(_this.nowIndex > 3){
+						setTimeout(()=>{
+							clearInterval(timer);
+						},2000);
+					}
+				},2000); 
+			}
+		});	
+
+		/*var oH1 = document.querySelector('h1'), nowIndex = 0;
+		var timer = setInterval(function(){
+			nowIndex++;
+			switch(nowIndex){
+				case 1:
+					oH1.innerHTML = '守候的文章';
+					break;
+				case 2: 
+					oH1.innerHTML = '愿您浏览愉快';
+					break;
+				case 3:
+					oH1.innerHTML = '学到知识';
+					break;	
+				default:
+					oH1.innerHTML = '欢迎浏览';
+					break;	
+			}			
+			if(nowIndex > 3) nowIndex = 0;	
+		},2000)*/ 
+	</script>
+</body> 
+</html>

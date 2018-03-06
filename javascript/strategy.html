@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>策略模式</title>
+</head>
+<body>
+	<pre>
+		定义：
+		定义一系列的算法，把它们一个个封装起来，并且使它们可以相互替换。
+		举例：
+		表单效验（是否为空、长度、手机号、邮箱等等）
+		    计算年终奖（工资、效绩）
+		下面以年终将做说明：
+		比如公司的年终奖是根据员工的工资和绩效来考核的，绩效为A的人，年终奖为工资的4倍，
+		绩效为B的人，年终奖为工资的3倍，绩效为C的人，年终奖为工资的2倍；
+	</pre>
+	<script>
+		// 一组策略类封装具体的算法
+		const Bouns = {
+			A(salary){
+				return salary * 4;
+			},
+			B(salary){
+				return salary * 3;
+			},
+			C(salary){
+				return salary * 2;
+			}
+		};
+		Object.freeze(Bouns);
+
+
+		/*
+		* 计算年终奖 环境类Context
+		* @param {String} A 效绩等级
+		* @param {Number} 10000 每月工资
+		* @returns {Number} 40000 年终奖
+		*/
+		const calculateBouns = function (type, salary) {
+			return Bouns[type](salary);
+		}
+
+		// 测试年终奖计算方式
+		const demo1 = calculateBouns('A',10000);
+		const demo2 = calculateBouns('B',80000);
+		console.log(demo1,demo2);
+
+
+		/*
+		* 表单验证
+		*/
+		// 这里我们实现一组策略类封装具体的验证规则
+		const strategy = {
+			// 是否为空
+			isNotEmpty(value,errorMsg){
+				if(value === ''){
+					return errorMsg;
+				}
+			},
+			// 最小长度
+			minLength(value,errorMsg,length){
+				if(value.length<length){
+					return errorMsg;
+				}
+			},
+			// 手机号码格式
+			mobileFormat(value,errorMsg){
+				if(!/(^1[3|5|8][0-9]{9}$)/.test(value)){
+					return errorMsg;		
+				}
+			}
+		};
+		Object.freeze(strategy);
+
+		var Validator = function(){
+			this.cache = [];	// 保存校验规则
+		};
+		Validator.prototype.add = function(dom,rules) {
+			var self = this;
+				
+		};
+	</script>
+</body>
+</html>

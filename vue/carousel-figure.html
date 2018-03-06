@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li {
+			list-style: none;
+		}
+		.clear::after {
+			display: block;
+			content: '';
+			clear: both;
+		}
+		img {
+			cursor: default;
+		}
+		.slide-img {
+			width: 1000px;
+			height: 500px;
+			overflow: hidden;
+			position: relative;
+			margin: 20px auto;
+		}
+		ul {
+			transition: all .5s ease;
+		}
+		li {
+			float: left;
+		}
+		
+		.slide-option {
+			position: absolute;
+			bottom: 10px;
+			left: 0;
+			width: 100%;
+			text-align: center;
+		}
+		.slide-option span {
+			display: inline-block;
+			width: 14px;
+			height: 14px;
+			border-radius: 100%;
+			background: #ccc;
+			margin: 0 10px;			
+		}
+		.slide-option .active{
+            background: #09f;
+        }
+
+        .slide-arrow div {
+			width: 50px;
+			height: 100px;
+			position: absolute;
+			bottom: 0;
+			top: 0;
+			margin: auto;
+			background: url("./images/arrow.jpg") no-repeat;
+			cursor: pointer;
+        }
+        .slide-arrow .arrow-right {
+        	right: 0;
+        	transform: rotate(180deg);
+        }
+        .slide-arrow .arrow-left {
+        	left: 0;
+        }
+	</style>
+</head>
+<body>
+	<div class="slide-img clear" id="slide-img" @mouseenter="clearInterval(timer)" @mouseleave="loop">
+		<ul :style="{'width':(listWidth*list.length)+'px','transform':'translate3d(-'+(listWidth*nowIndex)+'px,0,0)'}">
+			<li v-for="(item,index) in list" :style="{'width':listWidth+'px'}">
+				<a href="javascript:;">
+					<img :src="item">
+				</a>
+			</li>
+		</ul>
+		<div class="slide-option">
+			<span v-for="(item,index) in list" :class="{'active':index===nowIndex}"></span>
+		</div>
+		<div class="slide-arrow">
+			<div class="arrow-left" @click.stop="switchDo('reduce')"></div>
+			<div class="arrow-right" @click.stop="switchDo"></div>
+		</div>
+	</div>
+	<script src="vue.min.js"></script>
+	<script>
+		new Vue({
+			el: '#slide-img',
+			data: {
+				nowIndex: 0,
+				listWidth: '1000',
+				list: ['./images/timg1.jpg', './images/timg2.jpg', './images/timg3.jpg', './images/timg4.jpg'],
+				timer: null
+			},
+			methods: {
+				switchDo(reduce){
+					if(reduce === 'reduce'){
+						if(this.nowIndex === 0){
+							this.nowIndex = this.list.length - 1;
+						} else {
+							this.nowIndex--;
+						}
+					} else {
+						if(this.nowIndex === this.list.length - 1){
+							this.nowIndex = 0;
+						} else {
+							this.nowIndex++;	
+						}
+					}
+				},
+				loop(){
+					this.timer = setInterval(()=>{
+						this.switchDo();
+					},3000)			
+				}
+			},
+			mounted(){
+				this.loop();
+			}
+		});	
+	</script>
+</body>
+</html>

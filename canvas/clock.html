@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas</title>
+	<style>
+		body{background-color: #000;}
+		/* #myCanvas {display: none;} */
+		#img{position: absolute;top: 50px; left: 10px; border: thin solid #ccc;}
+	</style>
+	<script>
+	window.onload=function(){
+		//var oC=document.getElementById('myCanvas');
+		var oC = document.createElement('canvas');
+		oC.width = oC.height = 400;
+		var oCE=oC.getContext('2d');		
+	
+
+		//第五步 获取时间
+		function toDraw(){
+			var x=200;
+			var y=200;
+			var r=150;
+
+			oCE.clearRect(0,0,oC.width,oC.height);
+
+			var d = new Date();
+			var h = d.getHours();
+			var m = d.getMinutes();
+			var s = d.getSeconds();
+
+			var hVal = (-90 + h*30 + m/2) * Math.PI/180;
+			var mVal = (-90 + m*6) * Math.PI/180;
+			var sVal = (-90 + s*6) * Math.PI/180;
+
+			oCE.beginPath();
+			for(var i=0;i<60;i++){
+				oCE.moveTo(x,y);
+				oCE.arc(x,y,r,6*i*Math.PI/180,6*(i+1)*Math.PI/180,false);
+			}
+			oCE.closePath();
+			oCE.stroke();
+
+			oCE.fillStyle='#fff';
+			oCE.beginPath();
+			oCE.moveTo(x,y);
+			oCE.arc(x,y,r*19/20,0,360*Math.PI/180,false);
+			oCE.closePath();
+			oCE.fill();
+
+			oCE.lineWidth=3;
+			oCE.beginPath();
+			for(var i=0;i<12;i++){
+				oCE.moveTo(x,y);
+				oCE.arc(x,y,r,30*i*Math.PI/180,30*(i+1)*Math.PI/180,false);
+			}
+			oCE.closePath();
+			oCE.stroke();
+
+			oCE.fillStyle='#fff';
+			oCE.beginPath();
+			oCE.moveTo(x,y);
+			oCE.arc(x,y,r*18/20,0,360*Math.PI/180,false);
+			oCE.closePath();
+			oCE.fill();
+
+			//时针
+			oCE.lineWidth=5;
+			oCE.beginPath();
+			oCE.moveTo(x,y);
+			oCE.arc(x,y,r*10/20,hVal,hVal,false);
+			oCE.closePath();
+			oCE.stroke();
+
+			//分针
+			oCE.lineWidth=3;
+			oCE.beginPath();
+			oCE.moveTo(x,y);
+			oCE.arc(x,y,r*14/20,mVal,mVal,false);
+			oCE.closePath();
+			oCE.stroke();
+
+			//秒针
+			oCE.lineWidth=2;
+			oCE.beginPath();
+			oCE.moveTo(x,y);
+			oCE.arc(x,y,r*19/20,sVal,sVal,false);
+			oCE.closePath();
+			oCE.stroke();
+
+			var img = document.getElementById("img");
+
+			function update() {
+				img.src = oC.toDataURL();
+			}		
+			update()
+		}
+		
+		toDraw();
+
+		setInterval(toDraw,1000);
+
+	};
+	</script>
+</head>
+<body> 
+	
+	<img id="img">
+	<!-- <canvas id="myCanvas" width="400" height="400"></canvas> -->
+</body>
+</html>
