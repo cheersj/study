@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script data-main="./resource/main" src="./resource/require.min.js"></script>
+</head>
+<body>
+	<i class="icon-camera-retro icon-3x"></i>
+	<button onclick="test()">测试</button>
+	<script>
+		function test() {
+			require(['jquery'],function($){
+				$('body').css({'backgroundColor':'green'});			
+			})
+		}
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+// 定义变量
+@bg: #3d95d5;
+@color: #fff;
+@hoverBg: rgba(255,255,255,.8); 
+@hoverColor: #00f;
+@baseWidth: 20px;
+
+// 改变配置就可以更换主题了
+@bg: green;
+@color: orange;
+@hoverBg: pink; 
+@hoverColor: skyblue;
+@baseWidth: 40px;
+
+
+@itemWidth: @baseWidth * 1.5;
+@itemMargin: @baseWidth * 0.3;
+
+.nav {
+	width: @itemWidth * 3 + @itemMargin * 2;
+	background: @bg;
+	padding: @baseWidth/5 @baseWidth*0.75;
+	ul {
+		margin-right: -@itemMargin;	
+		overflow: hidden;
+	}
+	li {
+		float: left;
+		width: @itemWidth;
+		margin-right: @itemMargin;
+		height: @baseWidth;
+		line-height: @baseWidth;
+		text-align: center;
+		font-size: @baseWidth * 0.6; 
+		a {
+			text-decoration: none;
+			color: @color;
+		}
+		&:hover {
+			background: @hoverBg;
+			a {
+				color: @hoverColor;
+			}
+		}
+	}
+} 

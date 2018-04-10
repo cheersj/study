@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+div {
+  margin: 30px;
+}
+.module-1 {
+  width: 1000px !important;
+  height: 50px !important;
+  background: #efefef !important;
+  border: 1px solid #f0f !important;
+}
+.module-2 {
+  background: #efefef;
+  width: 300px;
+  height: 400px;
+  background: black;
+  border: 1px solid #f0f;
+  border-top: 5px dashed green;
+}
+.module-3 {
+  background: #efefef;
+  width: 700px;
+  height: 400px;
+  background: green;
+  border: 1px solid #f0f;
+}
+.link-1 {
+  height: 30px;
+  line-height: 30px;
+  margin: 30px 200px;
+}
+.link-1:hover {
+  background: #efefef;
+}
+.link-1 li {
+  float: left;
+  margin-left: 30px;
+}
+.link-1 li a {
+  text-decoration: none;
+  color: #666;
+  font-size: 14px;
+}
+.link-1 li a:hover {
+  color: #f30;
+}
+#title {
+  color: green;
+}
+.link-2 {
+  height: 30px;
+  line-height: 30px;
+  margin: 30px 200px;
+}
+.link-2:hover {
+  background: #efefef;
+}
+.link-2 li {
+  float: left;
+  margin-left: 30px;
+}
+.link-2 li a {
+  text-decoration: none;
+  color: #666;
+  font-size: 14px;
+}
+.link-2 li a:hover {
+  color: #f30;
+}
+.link-2 li a {
+  color: green;
+}
+.link-3 {
+  height: 30px;
+  line-height: 30px;
+  margin: 30px 200px;
+}
+.link-3:hover {
+  background: #efefef;
+}
+.link-3 li {
+  float: left;
+  margin-left: 30px;
+}
+.link-3 li a {
+  text-decoration: none;
+  color: #666;
+  font-size: 14px;
+}
+.link-3 li a:hover {
+  color: #f30;
+}
+.link-3 li a {
+  color: green;
+}
+.link-3 li a {
+  color: pink;
+}

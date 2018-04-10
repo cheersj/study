@@ -1,0 +1,41 @@
+.title h1 {
+  color: orange;
+  background: pink; }
+
+.info h1 {
+  color: blue;
+  background: skyblue; }
+
+.link-1 {
+  margin-top: 40px;
+  padding: 0 20px;
+  border-top: 2px solid pink;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: bold; }
+  .link-1 a {
+    text-decoration: none; }
+    .link-1 a:hover {
+      text-decoration: underline; }
+  .link-1 a, .link-1 span {
+    color: pink; }
+  .link-1:hover {
+    background: gray; }
+
+.link-2 {
+  margin-top: 40px;
+  padding: 0 20px;
+  border-top: 2px solid orange;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: bold; }
+  .link-2 a {
+    text-decoration: none; }
+    .link-2 a:hover {
+      text-decoration: underline; }
+  .link-2 a, .link-2 span {
+    color: orange; }
+  .link-2:hover {
+    background: green; }

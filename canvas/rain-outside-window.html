@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body {margin: 0;padding: 0;width: 98vw;height: 100vh;background-color: #eee;}
+		.box {position: fixed; box-shadow: 0px 5px 10px rgba(0,0,0,0.5);}
+
+		#container {margin-top: calc(50vh - 207px); margin-left: calc(50vw - 207px); background-color: #222; padding: 14px; z-index: 6; width: 400px; height: 400px;}
+
+		#glass {
+			width: 400px; 
+			height: 200px; 
+			background: linear-gradient(-45deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.15), 
+			rgba(255, 255, 255, 0.35), rgba(200, 200, 200, 0.15), rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.4));
+    		z-index: 0;
+		} 
+		#frame {
+			margin-top: 200px;
+			width: 400px;
+			height: 10px;
+			background-color: #222;
+			z-index: 1;
+		}
+		#lock {
+			margin-top: 200px;
+			margin-left: 175px;
+			width: 50px;
+			height: 12px;
+			background: linear-gradient(rgb(255,255,255),rgb(200,200,200),rgb(255,255,255),rgb(0,0,0));
+			z-index: 3;
+		}
+		#c {
+			background: linear-gradient(rgb(9, 34, 80), rgb(255, 255, 255));
+			box-shadow: 0px 5px 30px rgba(0,0,0,0.5) inset; 
+			z-index: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="container" class="box">
+		<div id="glass" class="box"></div>
+		<div id="frame" class="box"></div>
+		<div id="lock" class="box"></div>
+		<canvas id="c" width="400" height="400"></canvas>
+	</div>
+	<script>
+		'use strict';
+		window.onload=function(){
+			var vh = 400,
+				vw = 400,
+				nLayer = 3,
+				layer = [],
+				rain = [],
+				ctx = document.getElementById('c').getContext('2d');
+
+			function r(len){
+				return parseInt(len * Math.random());
+			}
+
+			function init() {
+				for(var i = 0; i < nLayer; i++){
+					layer[i] = {
+						n : 200 - 10 * i,
+						v : 3 * (i + 1),
+						w : parseInt(1 + i * 0.5),
+						color : 'rgba(255,255,255,' + 0.25 * (i + 1) + ')'
+					};
+				}
+
+				for(var i = 0; i < layer[0].n + layer[1].n + layer[2].n; i++){
+					rain[i] = {
+						x : r(vw),
+						y : r(vh)
+					};
+				}
+			}
+
+			function animate() {
+				var y = undefined,
+					k = 0; 
+
+
+				for(var j = 0; j < nLayer; j++){
+					var c = layer[j];
+					var v = c.v;
+					var w = c.w;
+
+					ctx.fillStyle = c.color;
+					ctx.beginPath();
+
+					for(var i = 0; i < c.n; i++) {
+						var drop = rain[k++];
+						if(drop.y < vh) {
+							y = drop.y + v;	
+						} else {
+							y = -20;
+						}
+						ctx.clearRect(drop.x,drop.y,w,w+5);
+						ctx.rect(drop.x,y,w,w+5);
+						drop.y = y;
+					}
+
+					ctx.fill();
+				}
+
+				requestAnimationFrame(animate);
+			}
+
+			ctx.canvas.width = vw;
+			ctx.canvas.height = vh;
+
+			init();
+			animate();
+		};
+	</script>
+</body>
+</html>

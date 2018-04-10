@@ -1,0 +1,52 @@
+// 定义变量
+$color: blue;
+$bg: skyblue;
+
+// 定义混合
+@mixin link($color: pink,$bg: gray) {
+	margin-top: 40px; 
+	padding: 0 20px;
+	border-top: 2px solid $color;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	font-weight: bold;
+	a {
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	a, span {
+		color: $color;
+	}
+	&:hover {
+		background: $bg;
+	}
+} 
+
+.title {
+	// 定义模块内部的局部变量
+	$color: orange;
+	$bg: pink;
+	h1 {
+		color: $color;
+		background: $bg;
+	}
+}
+
+.info {
+	h1 {
+		color: $color;
+		background: $bg;
+	}
+}
+
+.link-1 {
+	// 使用混合
+	@include link;
+}
+
+.link-2 {
+	@include link(orange,green);
+}

@@ -1,0 +1,89 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+div {
+	margin: 30px;
+}
+@color: pink;
+
+.module(@w:100px,@h:400px){  
+	width: @w;
+	height: @h;
+	background: #efefef;
+	border: 1px solid #f0f;
+} 
+.module(@w:100px,@h:400px) when (@w<500){  // when not
+	width: @w;
+	height: @h;
+	background: black;
+	border: 1px solid #f0f;
+} 
+.module(@w:100px,@h:400px) when (@w>500) and (@w<800){ 
+	width: @w;
+	height: @h;
+	background: green;
+	border: 1px solid #f0f;
+} 
+// 设置border-top方法
+.borderTop(@w,@s,@c){
+	// border-top: @w @s @c;	
+	border-top: @arguments;	
+}
+
+.module-1 {
+	.module(1000px,50px)!important;
+}
+.module-2 {
+	.module(300px);
+	.borderTop(5px,dashed,green);
+}
+.module-3 {
+	.module(700px);
+}
+
+
+.link-1 {
+	height: 30px;
+	line-height: 30px;
+	margin: 30px 200px;
+	&:hover {
+		background: #efefef;
+	}
+	li {
+		float: left;
+		margin-left: 30px;
+		a {
+			text-decoration: none;
+			color: #666;
+			font-size: 14px;
+			&:hover {
+				color: #f30;
+			}
+		}
+	}
+}
+// id 混合
+#title {
+	color: green;
+}
+// 通过混合复用样式
+.link-2 {
+	// 复用link-1的样式
+	.link-1;
+	li a {
+		#title;	
+	}
+	
+}
+
+.link-3 {
+	
+	.link-2;
+	// 修改样式一定注意权重
+	li a {
+		color: @color;
+	}
+	
+}
