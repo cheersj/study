@@ -1,0 +1,25 @@
+{
+  "name": "rax-hello",
+  "author": "samjerry",
+  "scripts": {
+    "build": "rax-scripts build",
+    "start": "rax-scripts start"
+  },
+  "dependencies": {
+    "rax-server-renderer": "^1.1.0",
+    "driver-universal": "^1.0.1",
+    "history": "^4.9.0",
+    "rax": "^1.0.8",
+    "rax-image": "^1.0.3",
+    "rax-link": "^1.0.1",
+    "rax-pwa": "^1.0.2",
+    "rax-view": "^1.0.0",
+    "rax-text": "^1.0.0",
+    "universal-app-runtime": "^0.2.0"
+  },
+  "devDependencies": {
+    "rax-plugin-ssr": "^0.1.0",
+    "rax-scripts": "^2.0.0",
+    "rax-plugin-app": "^0.1.1"
+  }
+}

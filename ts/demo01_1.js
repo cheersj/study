@@ -1,0 +1,25 @@
+"use strict";
+var age = 18;
+var stature = 178.5;
+console.log(age);
+console.log(stature);
+console.log('**********************');
+var jspang = "技术胖 jspang.com";
+console.log(jspang);
+console.log('**********************');
+var b = true;
+var c = false;
+console.log(b, c);
+console.log('**********************');
+var REN;
+(function (REN) {
+    REN["nan"] = "\u7537";
+    REN["nv"] = "\u5973";
+    REN["yao"] = "\u5996";
+})(REN || (REN = {}));
+console.log(REN.yao);
+console.log('**********************');
+var t = 10;
+t = 'hehe';
+t = true;
+console.log(t);

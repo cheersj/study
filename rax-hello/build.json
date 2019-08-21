@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    [
+      "rax-plugin-app",
+      {
+        "targets": ["web", "weex", "miniapp"]
+      }
+    ],
+    "rax-plugin-ssr"
+  ]
+}

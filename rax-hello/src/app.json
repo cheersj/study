@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "component": "pages/Home/index"
+    }
+  ],
+  "historyType": "browser",
+  "window": {
+    "defaultTitle": "Rax App 1.0"
+  }
+}
