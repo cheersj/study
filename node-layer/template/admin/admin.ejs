@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="/js/jquery.js"></script>
+</head>
+<body>
+  <p>
+    <label for="">用户：</label>
+    <input type="text" name="username">
+  </p>
+  <p>
+    <label for="">密码：</label>
+    <input type="password" name="password">
+  </p>
+  <p>
+    <button class="btn">提交</button>
+  </p>
+  <script>
+    $(function(){
+      $('.btn').click(function(){
+        var username = $(':text').val()
+        var password = $(':password').val()
+
+        $.ajax({
+          url: '/admin/login',
+          method: 'post',
+          data: {
+            username,
+            password
+          },
+          success(data){
+            console.log(data);
+          }
+        })
+      })
+    })
+  </script>
+</body>
+</html
